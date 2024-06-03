@@ -1,0 +1,37 @@
+
+{% extends "./partials/master.html" %}
+
+{% block title %}Projetos{% endblock %}
+
+{% block content %}
+
+{% if lista_projetos %}
+
+<a href="/projetos/novo" class="btn btn-primary m-3">Adicionar Projeto</a>
+
+<h1 class="p-3">Histórico de projetos</h1>
+
+
+<div class="row p-3">
+
+{% for projeto in lista_projetos %}
+
+<div class="col p-3">
+<div class="card" style="width:400px">
+    <img class="card-img-top" src="img_avatar1.png" alt="Card image">
+    <div class="card-body">
+      <h4 class="card-title">{{ projeto.nome_projeto }}</h4>
+      <p class="card-text">{{ projeto.descricao_projeto }}</p>
+      <a href="{% url 'projetos:detalhe' projeto.id %}" class="btn btn-primary">Ver projeto</a>
+    </div>
+  </div>
+</div>
+
+  {% endfor %}
+</div>
+  {% else %}
+    <p>Nenhum projeto cadastrado.</p>
+{% endif %}
+
+
+  {% endblock %}

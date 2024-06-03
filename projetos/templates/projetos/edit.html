@@ -1,0 +1,59 @@
+{% extends "./partials/master.html" %}
+
+
+{% block title %}Detalhes do Projeto{% endblock %}
+
+{% block content %}
+
+
+{% if projeto %}
+
+
+    <form method="post" action="./editar">
+        {% csrf_token %}
+
+        <div class="mb-3 mt-3">
+            <label for="nome_projeto" class="form-label">Nome do Projeto:</label>
+            <input required type="text" class="form-control" id="nome_projeto" placeholder="Digite o nome do projeto"
+                name="nome_projeto" value="{% if projeto %} {{ projeto.nome_projeto }} {% endif %}">
+        </div>
+
+        <div class="mb-3">
+            <label for="data_projeto" class="form-label">Data do projeto:</label>
+            <input required type="date" class="form-control" id="data_projeto" name="data_projeto"
+                value="{% if projeto %}{{ projeto.data_projeto |date:'Y-m-d' }}{% endif %}">
+        </div>
+
+        <div class="mb-3">
+            <label for="descricao_projeto" class="form-label">Descrição do projeto:</label>
+            <textarea required type="text" class="form-control" id="descricao_projeto" placeholder="Descrição do projeto"
+                name="descricao_projeto">
+
+            {% if projeto %}{{ projeto.descricao_projeto }}{% endif %}
+
+        </textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="foto_projeto" class="form-label">Foto do projeto:</label>
+            <input required type="text" id="myFile" name="foto_projeto" value={{projeto.foto_projeto}}>
+        </div>
+
+    
+        <button type="submit" class="btn btn-primary col-1">Alterar</button>
+    </form>
+
+    <form method="post" action="./deletar">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger mt-3 col-1">Apagar</button>
+    </form>
+
+    <a type="submit" class="btn btn-secondary mt-3 col-1" href="{% url 'projetos:detalhe' projeto.id %}"> Voltar </a>
+
+
+{% else %}
+<p>Nenhum projeto cadastrado.</p>
+{% endif %}
+
+
+{% endblock %}

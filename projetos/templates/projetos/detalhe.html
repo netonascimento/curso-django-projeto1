@@ -1,0 +1,26 @@
+
+{% extends "./partials/master.html" %}
+
+
+{% block title %}Detalhes do Projeto{% endblock %}
+
+{% block content %}
+
+
+{% if projeto %}
+<ul>
+    <li>Id do Projeto: {{projeto.id}}</li>
+    <li>Nome do Projeto: {{projeto}}</li>
+    <li>Data do projeto: {{projeto.data_projeto}}</li>
+    <li>Descrição do Projeto: {{projeto.descricao_projeto}}</li>
+    <li>Foto do Projeto: {{projeto.foto_projeto}}</li>
+    <a class="btn btn-primary mt-3" href="/projetos/{{projeto.id}}/edit">Editar</a>
+    <a class="btn btn-secondary mt-3" href="/projetos/projetos">Voltar</a>
+</ul>
+{% else %}
+<p>Nenhum projeto cadastrado.</p>
+{% endif %}
+
+{% endblock %}
+
+   

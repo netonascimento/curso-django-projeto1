@@ -1,0 +1,46 @@
+
+{% extends "./partials/master.html" %}
+
+
+{% block title %}Adicionar Projeto{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+<form method="post" action="./adicionar">
+    {% csrf_token %}
+
+    <div class="mb-3 mt-3">
+      <label for="nome_projeto" class="form-label">Nome do Projeto:</label>
+      <input required type="text" class="form-control" id="nome_projeto" placeholder="Digite o nome do projeto" name="nome_projeto" value="">
+    </div>
+
+    <div class="mb-3">
+      <label for="data_projeto" class="form-label">Data do projeto:</label>
+      <input required type="date" class="form-control" id="data_projeto" name="data_projeto" value="">
+    </div>
+
+    <div class="mb-3">
+        <label for="descricao_projeto" class="form-label">Descrição do projeto:</label>
+        <textarea required type="text" class="form-control" id="descricao_projeto" placeholder="Descrição do projeto" name="descricao_projeto">
+            
+        </textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="foto_projeto" class="form-label">Foto do projeto:</label>
+      <input required type="text" id="myFile" name="foto_projeto" value="">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Salvar</button>
+  </form>
+
+  <a type="submit" class="btn btn-secondary mt-3" href="/projetos/projetos"> Voltar </a>
+
+</div>
+
+
+{% endblock %}
+
+   
